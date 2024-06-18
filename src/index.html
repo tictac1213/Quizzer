@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quizzer</title>
     <link rel="stylesheet" href="output.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <!-- <link rel="stylesheet" href=/node_modules/prismjs/themes/prism.css"> -->
 </head>
 <body>
@@ -103,7 +106,7 @@
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quam sed, ad quis, dicta placeat non, et molestias fuga animi rem. Eum, modi nihil.
             </div>
         
-            <div class="border-b-2 p-3 max-h-[40%]" options>
+            <div class="border-b-2 p-4 " options>
                 <h2 class="font-semibold px-3" optHead>Options</h2>
                 <div class="optContent grid grid-cols-2 gap-2 mt-4">
                     <button class="border-2 border-green-200 p-2 rounded-md text-left" onclick="selectAnswer('a')" id="option1">Lorem ipsum dolor sit.</button>
@@ -129,7 +132,23 @@
         
     </div>
 
+    <div class="h-screen w-screen flex justify-center items-center bg-blue-200 inactive" id="Results_Page">
+        <div class="max-h-[90vh] border-2 p-6 rounded-lg max-w-[650px] bg-white mx-4">
+            <h2 class="font-bold text-lg">Results</h2>
+            
+            <div class="flex flex-col justify-center items-center mt-4">
 
+                <div class="class=" m-4 max-h-[600px] max-w-[500px] p-4">
+                    <canvas id="combinedChart"  width="250" height="250"></canvas>
+                </div>
+ <!-- Canvas for the pie chart -->
+               
+
+                <button class="px-2 py-1 mt-4 bg-blue-500 text-white border-2 rounded-md text-xl max-w-[150px] justify-self-center mx-auto" onclick="exitQuiz_Results()" Exit>Return Home</button>
+                
+            </div>
+            
+        </div>
 
 
 

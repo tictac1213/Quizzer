@@ -12,6 +12,7 @@ const startPage = document.querySelector('#start_page');
 const infoPage = document.querySelector('#info_page');
 const topicsPage = document.querySelector('#topics_page');
 const quizPage = document.querySelector('#quiz_page');
+const ResultsPage = document.querySelector('#Results_Page');
 const AI = document.querySelector('[AI]');
 const CPP = document.querySelector('[CPP]');
 const DBMS = document.querySelector('[DBMS]');
@@ -64,8 +65,30 @@ function exitQuiz_Info(){
     startPage.style.display = 'block';
     if(topic){
         topics[topic].style.backgroundColor = 'white';
-        topic="";
     }
+        topic="";
+        questions="";
+        totalNo=1;;
+        problemNo=-1;
+        correctAnswer=0;
+        wrongAnswer=0;
+        input_flag = "";
+    // currPage = startPage;
+}
+function exitQuiz_Results(){
+    ResultsPage.style.display ='none';
+    startPage.style.display = 'block';
+    if(topic){
+        topics[topic].style.backgroundColor = 'white';
+    }
+        topic="";
+        questions="";
+        totalNo=1;;
+        problemNo=-1;
+        correctAnswer=0;
+        wrongAnswer=0;
+        input_flag = "";
+    
     // currPage = startPage;
 }
 let questions = "";
@@ -144,23 +167,29 @@ let questionNo = -1;
 let timer; // global variable for the timer
 
 function displayQuestion() {
+    if(totalNo == 11){
+        endQuiz();
+    }
     explanationDiv.classList.add('hidden');
     resetOptionsBackground();
     input_flag = 1;
-    questionNo++;
     resetTimer(); // Reset timer for each new question
-    startTimer(30); // Start timer for 30 seconds
     quesNo.innerHTML = totalNo;
+    questionNo++;
     const currQuestion = questions[questionNo];
-    if (currQuestion.Question) {
+    if (currQuestion.Question && currQuestion.Options) {
+        startTimer(30); // Start timer for 30 seconds
         question.innerHTML = currQuestion.Question;
-        const codeBlock = question.querySelector('div');
-        if(codeBlock){
-            // console.log(codeBlock);
-            codeBlock.classList.add('highlight','max-w-[95%]','overflow-scroll', 'mt-4', 'text-sm', 'max-h-[80%]');
-            // Prism.highlightAllUnder(codeBlock);
-        }
-
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeBlock = question.querySelector('div'); 
+            if(codeBlock){
+                // console.log(codeBlock);
+                codeBlock.setAttribute('id', 'highlight');
+                console.log(codeBlock);
+                // Prism.highlightAllUnder(codeBlock);
+            }
+        });
+        
         question.innerHTML = currQuestion.Question;
         option1.innerHTML = currQuestion.Options[0];
         option2.innerHTML = currQuestion.Options[1];
@@ -182,10 +211,16 @@ function startTimer(duration) {
             clearInterval(timer);
             // displayNext(); // Auto display next question or handle timeout
             input_flag = "";
+            explanationDiv.classList.remove('hidden');
+            explanationDiv.querySelector('[expContent]').innerHTML = currQuestion.Answer;
+            // input_flag = "";
         }
     }, 1000);
 }
-let input_flag = 0;
+let input_flag = "";
+let correctAnswer = 0;
+let wrongAnswer = 0;
+
 function resetTimer() {
     clearInterval(timer);
     clock.innerHTML = '30 seconds';
@@ -195,7 +230,7 @@ const explanationDiv = document.querySelector('[Explaination]');
 function selectAnswer(val) {
    if(input_flag){
     const currQuestion = questions[questionNo];
-    const correctAnswer = currQuestion.Answer.split(" ")[1];
+    const correctAnswer = currQuestion.Answer.split(":")[1];
     
     // console.log('option' + (val-'a'+1));
     const map ={
@@ -208,10 +243,12 @@ function selectAnswer(val) {
     if (val === correctAnswer[0]) {
         document.getElementById('option' + map[val]).style.backgroundColor = 'lightgreen';
         console.log("Correct");
+        correctAnswer++;
         
     } else {
         document.getElementById('option' + map[val]).style.backgroundColor = 'lightcoral';
         console.log("Incorrect");
+        wrongAnswer++;
     }
 
     explanationDiv.classList.remove('hidden');
@@ -234,8 +271,96 @@ function resetOptionsBackground() {
 }
 
 
-    function displayNext(){
-        displayQuestion();
-        // console.log("questionNo");
+function displayNext(){
+    displayQuestion();
+    // console.log("questionNo");
         
+}
+
+function endQuiz() {
+    quizPage.style.display='none';
+    ResultsPage.style.display='block';
+    ResultsPage.style.display='flex';
+    const totalQuestions = 10;
+    const unattempted = totalQuestions - (correctAnswer + wrongAnswer); 
+    renderCombinedPieChart(correctAnswer, wrongAnswer, unattempted);
+
+    if(topic){
+        topics[topic].style.backgroundColor = 'white';
     }
+        topic="";
+        questions="";
+        totalNo=1;;
+        problemNo=-1;
+        correctAnswer=0;
+        wrongAnswer=0;
+        input_flag = "";
+}
+
+function renderCombinedPieChart(correctQuantity, wrongQuantity, unattemptedQuantity) {
+    const total = correctQuantity + wrongQuantity + unattemptedQuantity;
+    const label1 = "Correct Answers : " + correctQuantity;
+    const label2 = "Wrong Answers : " + wrongQuantity;
+    const label3 = "Unattempted Answers : " + unattemptedQuantity;
+    const ctx = document.getElementById('combinedChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: [label1, label2, label3],
+            datasets: [{
+                label: 'Quiz Results',
+                data: [correctQuantity, wrongQuantity, unattemptedQuantity],
+                backgroundColor: [
+                    'rgba(75, 192, 192, 0.2)', // Correct Answers color
+                    'rgba(255, 99, 132, 0.2)', // Wrong Answers color
+                    'rgba(54, 162, 235, 0.2)' // Unattempted color
+                ],
+                borderColor: [
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)'
+                ],
+                borderWidth: 1
+            }]
+        }, options: {
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom', // Position of the legend
+                    labels: {
+                        boxWidth: 10, // Width of legend color box
+                        boxHeight: 10, // Height of legend color box
+                        font: {
+                            size: 12 // Font size of legend labels
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            const label = tooltipItem.label;
+                            const dataset = tooltipItem.dataset;
+                            const value = dataset.data[tooltipItem.dataIndex];
+                            return `${label}: ${value}`; // Display quantity only
+                        }
+                    }
+                },
+                datalabels: {
+                    color: '#000', // Color of labels
+                    anchor: 'end',
+                    align: 'end',
+                    offset: -10,
+                    font: {
+                        size: 14,
+                    },
+                    formatter: function(value, context) {
+                        return value; // Display quantity only
+                    }
+                }
+            }
+        }
+    });
+}
+        
+
+

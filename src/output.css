@@ -593,6 +593,11 @@ video {
   margin-right: 1rem;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .my-6 {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
@@ -616,10 +621,6 @@ video {
 
 .mt-12 {
   margin-top: 3rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
 }
 
 .mt-4 {
@@ -654,8 +655,8 @@ video {
   height: 4rem;
 }
 
-.h-auto {
-  height: auto;
+.h-\[80vh\] {
+  height: 80vh;
 }
 
 .h-full {
@@ -666,20 +667,8 @@ video {
   height: 100vh;
 }
 
-.h-\[95vh\] {
-  height: 95vh;
-}
-
-.h-\[85vh\] {
-  height: 85vh;
-}
-
-.h-\[80vh\] {
-  height: 80vh;
-}
-
-.max-h-\[50\%\] {
-  max-height: 50%;
+.max-h-\[40\%\] {
+  max-height: 40%;
 }
 
 .max-h-\[600px\] {
@@ -690,16 +679,8 @@ video {
   max-height: 680px;
 }
 
-.max-h-\[40\%\] {
-  max-height: 40%;
-}
-
-.max-h-\[80\%\] {
-  max-height: 80%;
-}
-
-.max-h-\[95vh\] {
-  max-height: 95vh;
+.max-h-\[90vh\] {
+  max-height: 90vh;
 }
 
 .min-h-screen {
@@ -714,8 +695,12 @@ video {
   width: 100vw;
 }
 
-.w-\[800px\] {
-  width: 800px;
+.max-w-\[150px\] {
+  max-width: 150px;
+}
+
+.max-w-\[500px\] {
+  max-width: 500px;
 }
 
 .max-w-\[550px\] {
@@ -728,14 +713,6 @@ video {
 
 .max-w-\[700px\] {
   max-width: 700px;
-}
-
-.max-w-\[95\%\] {
-  max-width: 95%;
-}
-
-.max-w-\[800px\] {
-  max-width: 800px;
 }
 
 .grid-cols-2 {
@@ -790,12 +767,12 @@ video {
   align-self: center;
 }
 
-.overflow-hidden {
-  overflow: hidden;
+.justify-self-center {
+  justify-self: center;
 }
 
-.overflow-scroll {
-  overflow: scroll;
+.overflow-hidden {
+  overflow: hidden;
 }
 
 .overflow-y-scroll {
@@ -848,6 +825,11 @@ video {
 .bg-blue-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+}
+
+.bg-green-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(220 252 231 / var(--tw-bg-opacity));
 }
 
 .bg-green-200 {
@@ -945,9 +927,9 @@ video {
   line-height: 2.5rem;
 }
 
-.text-sm {
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 .text-xl {
@@ -994,6 +976,7 @@ video {
 
 .inactive{
   display: none;
+  /* color: lightcoral; */
 }
 
 /* .box{
@@ -1001,33 +984,30 @@ video {
     padding-left: 0px;
 } */
 
-.highlight {
-  background-color: #f5f5f5;
-  /* light gray background */
+#combinedChart {
+  width: 250px;
+  height: 250px;
+}
+
+#highlight {
+  background-color: #b1adad;
   border: 1px solid #ccc;
-  /* light border */
   padding: 15px;
-  overflow: scroll;
+  /* overflow: scroll; */
   white-space: pre-wrap;
-  /* keeps formatting of code */
+  max-width: 95%;
+  overflow: scroll;
+  margin-top: 1rem;
+  /* This is equivalent to mt-4 */
+  font-size: 0.875rem;
+  /* This is equivalent to text-sm */
+  max-height: 80%;
+  border-radius: 10px;
 }
 
 @media (min-width: 640px) {
-  .sm\:my-10 {
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .sm\:max-h-\[95vh\] {
-    max-height: 95vh;
-  }
-
   .sm\:max-w-\[50vw\] {
     max-width: 50vw;
-  }
-
-  .sm\:max-w-\[800px\] {
-    max-width: 800px;
   }
 
   .sm\:flex-row {
