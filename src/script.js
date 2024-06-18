@@ -183,7 +183,7 @@ function selectAnswer(val) {
         document.getElementById('option' + map[val]).style.backgroundColor = 'lightgreen';
         console.log("Correct");
     } else {
-        document.getElementById('option' + map[val]).style.backgroundColor = 'red-300';
+        document.getElementById('option' + map[val]).style.backgroundColor = 'lightcoral';
         console.log("Incorrect");
     }
 
