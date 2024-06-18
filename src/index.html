@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quizzer</title>
+    <link rel="stylesheet" href="/FrontEndQuiz/src/output.css" />
+    <!-- <link rel="stylesheet" href=../node_modules/prismjs/themes/prism.css"> -->
+</head>
+<body>
+    <div class=" w-screen h-screen bg-purple-400 overflow-hidden " id="start_page">
+        <div class="navbar bg-white flex justify-between">
+            <div>
+                <img src="/FrontEndQuiz/items/logo.png" alt="" class="h-16 mt-0 ml-4">
+            </div>
+            <div class="options h-full flex place-content-center gap-6 self-center px-[6%]">
+                <ul class="flex gap-8 items-center h-full  ">
+                    <li><button class="px-4 bg-purple-400  text-white border-2 rounded-md text-xl py-1" onclick="startQuiz()" TakeQuiz>Take a Quiz</button></li>
+                    <li>Github</li>
+                    <li>Developer</li>
+                </ul>
+            </div>
+        </div>
+        <div class="flex justify-center items-center flex-col md:flex-row lg:flex-row sm:flex-row ">
+            <div class="info  mx-12 my-6 sm:max-w-[50vw] md:max-w-[40vw] lg:max-w-[35vw]">
+                <h1 class="welcome font-bold px-4 mt-4 text-white text-4xl md:text-[3.25rem] lg:text-6xl leading-[1.15]">
+                    Learn <br>New conceps each minute
+                </h1>
+                <!-- <p class="mt-6 px-4">Explore QuickQuiz, a platform for testing your knowledge through multiple-choice questions. <br>
+                    QuickQuiz offers a streamlined experience designed for learning. Dive into quizzes covering various topics, track your progress, and compare scores with friends to gauge your understanding. <br> With a user-friendly interface, QuickQuiz makes learning efficient and enjoyable. Start your journey today and discover how easy it is to expand your knowledge with QuickQuiz!</p> -->
+
+                <div class="text-gray-200 mx-4 px-2 mt-6 border-l-4">
+                    Test your knoledge now
+                </div>
+                
+                    <button class="px-4 mx-4 mt-12 text-purple-500 bg-white border-2 rounded-md text-xl py-1" onclick="startQuiz()" start>Start Quiz</button>
+                
+            </div>
+
+            <div class="homeImg overflow-hidden flex justify-center items-center">
+                <img src="/FrontEndQuiz/items/Illusttration-home.png" alt="" class="     max-h-[680px] overflow-hidden ">
+            </div>
+        </div>
+
+    </div>
+
+    <div class="h-screen w-screen flex justify-center items-center bg-blue-200 inactive" id="info_page">
+        <div class="max-h-[600px] border-2 p-6 rounded-lg max-w-[550px] bg-white mx-4">
+            <h2 class="font-bold">Rules for the Quiz</h2>
+            <ol id="instruction" class="flex flex-col gap-2 px-2 mt-4">
+                <li> <strong>1.</strong> The quiz consists of 10 questions, each with a <strong>30-second</strong> time limit.</li>
+                <li> <strong>2.</strong> Once you select an answer, you cannot change it, so read each question carefully before making your choice.</li>
+                <li> <strong>3.</strong> Points are awarded for each correct answer, with no penalties for incorrect answers.</li>
+                <li> <strong>4.</strong> If the timer runs out, the current question will be automatically marked as incorrect.</li>
+                <li> <strong>5.</strong> You must complete all 10 questions to finish the quiz. Your final score will be based on the number of correct answers.</li>
+            </ol>
+            <div class="flex justify-between">
+                <button id="quit" class="px-4 py-1 mx-2 mt-12 bg-blue-500 text-white border-2 rounded-md text-xl" onclick="exitQuiz_Info()" Exit>Exit Quiz</button>
+                 <button id="restart" class="px-4 py-1 mx-2 mt-12 bg-blue-500 text-white border-2 rounded-md text-xl" onclick="continue_Info()" Continue>Continue</button>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <div class="h-screen w-screen flex justify-center items-center bg-yellow-100 inactive" id="topics_page">
+        <div class="max-w-[700px] border-2 p-6 rounded-lg  bg-white mt-10 flex flex-col mx-4 " >
+            <h1 class="text-3xl font-semibold">Select A Topic</h1>  
+            <div class="flex flex-wrap gap-5 max-w-[650px] mt-6 " id="topics">
+                <div class="box p-4 border-[2px] border-yellow-300 border-opacity-50 rounded-lg" onclick="toggleSelection('AI')" AI>Artificial Intelligence</div>
+                <button class="box p-4 border-[2px] border-yellow-300 border-opacity-50 rounded-lg" onclick="toggleSelection('CPP')" CPP>C++</button>
+                <button class="box p-4 border-[2px] border-yellow-300 border-opacity-50 rounded-lg" onclick="toggleSelection('DBMS')" DBMS>DBMS</button>
+                <button class="box p-4 border-[2px] border-yellow-300 border-opacity-50 rounded-lg" onclick="toggleSelection('DataScience')" DataScience>Data Science</button>
+                <button class="box p-4 border-[2px] border-yellow-300 border-opacity-50 rounded-lg" onclick="toggleSelection('RDBMS')" RDBMS>RDBMS</button>
+                <button class="box p-4 border-[2px] border-yellow-300 border-opacity-50 rounded-lg" onclick="toggleSelection('Js')" Js> JavaScript </button>
+                <button class="box p-4 border-[2px] border-yellow-300 border-opacity-50 rounded-lg" onclick="toggleSelection('MySql')" MySql>MySql</button>
+                <button class="box p-4 border-[2px] border-yellow-300 border-opacity-50 rounded-lg" onclick="toggleSelection('BasicDSA-I')" BasicDSA-I>DSA-I</button>
+                <button class="box p-4 border-[2px] border-yellow-300 border-opacity-50 rounded-lg" onclick="toggleSelection('BasicDSA-II')" BasicDSA-II>DSA-II</button>
+            </div>
+            
+    
+            <div class="flex justify-between relative p-2">
+                <button id="quit" class="px-4 py-1 mx-2 mt-12 bg-yellow-400 text-white border-2 rounded-md text-xl" onclick="exitQuiz_Topic()"  ExitT>Exit Quiz</button>
+
+                <div class="text-red-500 text-xs absolute right-2 bottom-[-15px] hidden" warnings>*please select a topic</div>
+                <button id="restart" class="px-4 py-1 mx-2 mt-12 bg-yellow-400 text-white border-2 rounded-md text-xl" onclick="continue_Topic()"  ContinueT>Continue</button>
+            </div>
+            
+        </div>
+    </div>
+
+    </div>
+
+    <div class="min-h-screen w-screen flex justify-center bg-green-200 inactive" id="quiz_page">
+
+        <div class=" border-2 p-6 rounded-lg  bg-white my-6 flex flex-col mb-auto mx-4" quizBox>
+            <div class="head flex justify-between border-b-2 ">
+                <div class="m-1 font-semibold">Question No. <span id="quesNo">0</span></div>
+                <div class="m-1 font-semibold">Time Left : <span id="Timer">0</span> seconds</div>
+            </div>
+        
+            <div class="my-4 px-4 border-b-2 py-6" id="question">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quam sed, ad quis, dicta placeat non, et molestias fuga animi rem. Eum, modi nihil.
+            </div>
+        
+            <div class="mt-2 border-b-2 p-3" options>
+                <h2 class="font-semibold px-3" optHead>Options</h2>
+                <div class="optContent grid grid-col-2 gap-2 mt-4">
+                    <button class="border-2 border-green-200 p-2 rounded-md text-left" onclick="selectAnswer('a')" id="option1">Lorem ipsum dolor sit.</button>
+                    <button class="border-2 border-green-200 p-2 rounded-md text-left" onclick="selectAnswer('b')" id="option2">Lorem ipsum dolor sit.</button>
+                    <button class="border-2 border-green-200 p-2 rounded-md text-left" onclick="selectAnswer('c')" id="option3">Lorem ipsum dolor sit.</button>
+                    <button class="border-2 border-green-200 p-2 rounded-md text-left" onclick="selectAnswer('d')" id="option4">Lorem ipsum dolor sit.</button>
+                </div>
+            </div>
+            <div class="mt-4 border-b-2 p-3 hidden" Explaination>
+                <h2 class="font-semibold px-3" expHead>Explaination</h2>
+                <div class="" expContent></div>
+            </div>
+        
+            <div class="footer mt-auto">
+        
+                <div class="next flex justify-end w-full py-3 ">
+                    <button class="px-2 py-1 mx-2 bg-green-600 text-white border-2 rounded-md text-xl" onclick="displayNext()" Next>Next Question</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+
+
+
+    <script type="" src="script.js"></script>
+
+</body>
+</html>

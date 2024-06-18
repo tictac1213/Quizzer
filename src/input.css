@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.inactive{
+    /* display: none; */
+
+}
+
+/* .box{
+    text-align: left;
+    padding-left: 0px;
+} */
+
+.highlight {
+    background-color: #f5f5f5; /* light gray background */
+    border: 1px solid #ccc; /* light border */
+    padding: 15px;
+    overflow: scroll;
+    white-space: pre-wrap; /* keeps formatting of code */
+}
+  
