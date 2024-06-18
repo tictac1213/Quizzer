@@ -154,6 +154,14 @@ function displayQuestion() {
     const currQuestion = questions[questionNo];
     if (currQuestion.Question) {
         question.innerHTML = currQuestion.Question;
+        const codeBlock = question.querySelector('div');
+        if(codeBlock){
+            // console.log(codeBlock);
+            codeBlock.classList.add('highlight','max-w-[95%]','overflow-scroll', 'mt-4', 'text-sm', 'max-h-[80%]');
+            // Prism.highlightAllUnder(codeBlock);
+        }
+
+        question.innerHTML = currQuestion.Question;
         option1.innerHTML = currQuestion.Options[0];
         option2.innerHTML = currQuestion.Options[1];
         option3.innerHTML = currQuestion.Options[2];
