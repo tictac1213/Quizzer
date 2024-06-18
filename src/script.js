@@ -92,19 +92,34 @@ function continue_Topic(){
     }
     else{
         warnings.style.display='block';
+        
+        
     }
     // currPage = startPage;
 }
-function continue_Info(){
-    infoPage.style.display ='none';
-    if(questions){
-        quizPage.style.display = 'block';
+
+async function continue_Info() {
+    if (questions) {
+        infoPage.style.display = 'none';
         quizPage.style.display = 'flex';
         displayQuestion();
+    } else {
+        try {
+            await getQuestions(topic);
 
+            if (questions) {
+                infoPage.style.display = 'none';
+                quizPage.style.display = 'flex';
+                displayQuestion();
+            } else {
+                console.error('Questions not fetched successfully.');
+            }
+        } catch (error) {
+            console.error('Error fetching questions:', error);
+        }
     }
-    // currPage = startPage;
 }
+
 
 
 function toggleSelection(val){
@@ -129,6 +144,7 @@ let questionNo = -1;
 let timer; // global variable for the timer
 
 function displayQuestion() {
+    explanationDiv.classList.add('hidden');
     resetOptionsBackground();
     input_flag = 1;
     questionNo++;
@@ -167,6 +183,7 @@ function resetTimer() {
     clock.innerHTML = '30 seconds';
 }
 
+const explanationDiv = document.querySelector('[Explaination]');
 function selectAnswer(val) {
    if(input_flag){
     const currQuestion = questions[questionNo];
@@ -179,15 +196,16 @@ function selectAnswer(val) {
         'c' : 3,
         'd' : 4,
     }
+    console.log(val, " ", correctAnswer[0]);
     if (val === correctAnswer[0]) {
         document.getElementById('option' + map[val]).style.backgroundColor = 'lightgreen';
         console.log("Correct");
+        
     } else {
         document.getElementById('option' + map[val]).style.backgroundColor = 'lightcoral';
         console.log("Incorrect");
     }
 
-    const explanationDiv = document.querySelector('[Explaination]');
     explanationDiv.classList.remove('hidden');
     explanationDiv.querySelector('[expContent]').innerHTML = currQuestion.Answer;
     input_flag = "";
