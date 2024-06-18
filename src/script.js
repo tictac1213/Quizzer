@@ -129,6 +129,7 @@ let questionNo = -1;
 let timer; // global variable for the timer
 
 function displayQuestion() {
+    resetOptionsBackground();
     input_flag = 1;
     questionNo++;
     resetTimer(); // Reset timer for each new question
