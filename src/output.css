@@ -574,6 +574,10 @@ video {
   margin: 0.25rem;
 }
 
+.m-4 {
+  margin: 1rem;
+}
+
 .mx-12 {
   margin-left: 3rem;
   margin-right: 3rem;
@@ -655,6 +659,10 @@ video {
   height: 4rem;
 }
 
+.h-auto {
+  height: auto;
+}
+
 .h-full {
   height: 100%;
 }
@@ -701,6 +709,10 @@ video {
 
 .max-w-\[95\%\] {
   max-width: 95%;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .flex-col {
@@ -970,6 +982,15 @@ video {
 }
 
 @media (min-width: 640px) {
+  .sm\:my-10 {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .sm\:max-h-\[80vh\] {
+    max-height: 80vh;
+  }
+
   .sm\:max-w-\[50vw\] {
     max-width: 50vw;
   }

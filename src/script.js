@@ -98,6 +98,7 @@ function continue_Topic(){
 function continue_Info(){
     infoPage.style.display ='none';
     if(questions){
+        quizPage.style.display = 'block';
         quizPage.style.display = 'flex';
         displayQuestion();
 
@@ -127,7 +128,7 @@ let questionNo = -1;
 
 function displayQuestion(){
     questionNo++;
-    quesNo.textContent = totalNo;
+    quesNo.innerHTML = totalNo;
     const currQuestion = questions[questionNo];
     if(currQuestion.Question){
         // const startTagIndex = currQuestion.Question.indexOf("<");
@@ -139,10 +140,10 @@ function displayQuestion(){
             codeBlock.classList.add('highlight','max-w-[95%]','overflow-scroll', 'mt-4', 'text-sm','max-h-[50%]');
             // Prism.highlightAllUnder(codeBlock);
         }
-        option1.textContent = currQuestion.Options[0];
-        option2.textContent = currQuestion.Options[1];
-        option3.textContent = currQuestion.Options[2];
-        option4.textContent = currQuestion.Options[3];
+        option1.innerHTML = currQuestion.Options[0];
+        option2.innerHTML = currQuestion.Options[1];
+        option3.innerHTML = currQuestion.Options[2];
+        option4.innerHTML = currQuestion.Options[3];
         totalNo++;
     }
     else{

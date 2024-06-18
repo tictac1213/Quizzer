@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Quizzer</title>
-    <link rel="stylesheet" href="../src/output.css" />
+    <link rel="stylesheet" href="output.css" />
     <!-- <link rel="stylesheet" href=../node_modules/prismjs/themes/prism.css"> -->
 </head>
 <body>
@@ -93,7 +93,7 @@
 
     <div class="min-h-screen w-screen flex justify-center bg-green-200 inactive" id="quiz_page">
 
-        <div class=" border-2 p-6 rounded-lg  bg-white my-6 flex flex-col mb-auto mx-4" quizBox>
+        <div class=" border-2 p-6 rounded-lg  bg-white  flex flex-col mb-auto m-4 h-auto sm:max-h-[80vh] sm:my-10" quizBox>
             <div class="head flex justify-between border-b-2 ">
                 <div class="m-1 font-semibold">Question No. <span id="quesNo">0</span></div>
                 <div class="m-1 font-semibold">Time Left : <span id="Timer">0</span> seconds</div>
@@ -105,7 +105,7 @@
         
             <div class="mt-2 border-b-2 p-3" options>
                 <h2 class="font-semibold px-3" optHead>Options</h2>
-                <div class="optContent grid grid-col-2 gap-2 mt-4">
+                <div class="optContent grid grid-cols-2 gap-2 mt-4">
                     <button class="border-2 border-green-200 p-2 rounded-md text-left" onclick="selectAnswer('a')" id="option1">Lorem ipsum dolor sit.</button>
                     <button class="border-2 border-green-200 p-2 rounded-md text-left" onclick="selectAnswer('b')" id="option2">Lorem ipsum dolor sit.</button>
                     <button class="border-2 border-green-200 p-2 rounded-md text-left" onclick="selectAnswer('c')" id="option3">Lorem ipsum dolor sit.</button>
