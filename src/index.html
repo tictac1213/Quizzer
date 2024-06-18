@@ -11,7 +11,7 @@
     <div class=" w-screen h-screen bg-purple-400 overflow-hidden " id="start_page">
         <div class="navbar bg-white flex justify-between">
             <div>
-                <img src="/items/logo.png" alt="" class="h-16 mt-0 ml-4">
+                <img src="./items/logo.png" alt="" class="h-16 mt-0 ml-4">
             </div>
             <div class="options h-full flex place-content-center gap-6 self-center px-[6%]">
                 <ul class="flex gap-8 items-center h-full  ">
@@ -38,7 +38,7 @@
             </div>
 
             <div class="homeImg overflow-hidden flex justify-center items-center">
-                <img src="/items/Illusttration-home.png" alt="" class="     max-h-[680px] overflow-hidden ">
+                <img src="./items/Illusttration-home.png" alt="" class="     max-h-[680px] overflow-hidden ">
             </div>
         </div>
 
@@ -93,17 +93,17 @@
 
     <div class="min-h-screen w-screen flex justify-center bg-green-200 inactive" id="quiz_page">
 
-        <div class=" border-2 p-6 rounded-lg  bg-white  flex flex-col mb-auto m-4 h-auto sm:max-h-[80vh] sm:my-10" quizBox>
+        <div class="border-2 p-6 rounded-lg bg-white flex flex-col mb-auto m-4 overflow-y-scroll h-[80vh] lg:w-[800px] md:[600px] w-full" quizBox>
             <div class="head flex justify-between border-b-2 ">
                 <div class="m-1 font-semibold">Question No. <span id="quesNo">0</span></div>
                 <div class="m-1 font-semibold">Time Left : <span id="Timer">0</span> seconds</div>
             </div>
         
-            <div class="my-4 px-4 border-b-2 py-6" id="question">
+            <div class=" px-2 border-b-2 py-6 'max-h-[40%]" id="question">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid quam sed, ad quis, dicta placeat non, et molestias fuga animi rem. Eum, modi nihil.
             </div>
         
-            <div class="mt-2 border-b-2 p-3" options>
+            <div class="border-b-2 p-3 max-h-[40%]" options>
                 <h2 class="font-semibold px-3" optHead>Options</h2>
                 <div class="optContent grid grid-cols-2 gap-2 mt-4">
                     <button class="border-2 border-green-200 p-2 rounded-md text-left" onclick="selectAnswer('a')" id="option1">Lorem ipsum dolor sit.</button>

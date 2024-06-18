@@ -137,7 +137,7 @@ function displayQuestion(){
         const codeBlock = question.querySelector('div');
         if(codeBlock){
             // console.log(codeBlock);
-            codeBlock.classList.add('highlight','max-w-[95%]','overflow-scroll', 'mt-4', 'text-sm','max-h-[50%]');
+            codeBlock.classList.add('highlight','max-w-[95%]','overflow-scroll', 'mt-4', 'text-sm', 'max-h-[80%]');
             // Prism.highlightAllUnder(codeBlock);
         }
         option1.innerHTML = currQuestion.Options[0];
