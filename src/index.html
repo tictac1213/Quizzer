@@ -55,8 +55,8 @@
                 <li> <strong>5.</strong> You must complete all 10 questions to finish the quiz. Your final score will be based on the number of correct answers.</li>
             </ol>
             <div class="flex justify-between">
-                <button id="quit" class="px-4 py-1 mx-2 mt-12 bg-blue-500 text-white border-2 rounded-md text-xl" onclick="exitQuiz_Info()" Exit>Exit Quiz</button>
-                 <button id="restart" class="px-4 py-1 mx-2 mt-12 bg-blue-500 text-white border-2 rounded-md text-xl" onclick="continue_Info()" Continue>Continue</button>
+                <button class="px-4 py-1 mx-2 mt-12 bg-blue-500 text-white border-2 rounded-md text-xl" onclick="exitQuiz_Info()" Exit>Exit Quiz</button>
+                 <button class="px-4 py-1 mx-2 mt-12 bg-blue-500 text-white border-2 rounded-md text-xl" onclick="continue_Info()" Continue>Continue</button>
             </div>
             
         </div>
@@ -96,7 +96,7 @@
         <div class="border-2 p-6 rounded-lg bg-white flex flex-col mb-auto m-4 overflow-y-scroll h-[80vh] lg:w-[800px] md:[600px] w-full" quizBox>
             <div class="head flex justify-between border-b-2 ">
                 <div class="m-1 font-semibold">Question No. <span id="quesNo">0</span></div>
-                <div class="m-1 font-semibold">Time Left : <span id="Timer">0</span> seconds</div>
+                <div class="m-1 font-semibold">Time Left : <span id="Timer">0</div>
             </div>
         
             <div class=" px-2 border-b-2 py-6 'max-h-[40%]" id="question">
@@ -112,9 +112,11 @@
                     <button class="border-2 border-green-200 p-2 rounded-md text-left" onclick="selectAnswer('d')" id="option4">Lorem ipsum dolor sit.</button>
                 </div>
             </div>
-            <div class="mt-4 border-b-2 p-3 hidden" Explaination>
+            <div class="mt-4 border-b-2 p-3 hidden bg-green-100 rounded-lg" Explaination>
                 <h2 class="font-semibold px-3" expHead>Explaination</h2>
-                <div class="" expContent></div>
+                <div class="py-3" expContent>
+                </div>
+
             </div>
         
             <div class="footer mt-auto">

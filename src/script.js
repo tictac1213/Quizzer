@@ -126,48 +126,86 @@ function toggleSelection(val){
 let totalNo = 1;
 let questionNo = -1;
 
-function displayQuestion(){
+let timer; // global variable for the timer
+
+function displayQuestion() {
+    input_flag = 1;
     questionNo++;
+    resetTimer(); // Reset timer for each new question
+    startTimer(30); // Start timer for 30 seconds
     quesNo.innerHTML = totalNo;
     const currQuestion = questions[questionNo];
-    if(currQuestion.Question){
-        // const startTagIndex = currQuestion.Question.indexOf("<");
-
+    if (currQuestion.Question) {
         question.innerHTML = currQuestion.Question;
-        const codeBlock = question.querySelector('div');
-        if(codeBlock){
-            // console.log(codeBlock);
-            codeBlock.classList.add('highlight','max-w-[95%]','overflow-scroll', 'mt-4', 'text-sm', 'max-h-[80%]');
-            // Prism.highlightAllUnder(codeBlock);
-        }
         option1.innerHTML = currQuestion.Options[0];
         option2.innerHTML = currQuestion.Options[1];
         option3.innerHTML = currQuestion.Options[2];
         option4.innerHTML = currQuestion.Options[3];
         totalNo++;
+    } else {
+        displayQuestion();
     }
-    else{
-        // questionNo++;
-        display(questionNo);
-    }
-
 }
 
+function startTimer(duration) {
+    let timeLeft = duration;
+    timer = setInterval(function() {
+        clock.innerHTML = timeLeft + ' seconds';
+        timeLeft--;
+
+        if (timeLeft < 0 || !input_flag) {
+            clearInterval(timer);
+            // displayNext(); // Auto display next question or handle timeout
+            input_flag = "";
+        }
+    }, 1000);
+}
+let input_flag = 0;
+function resetTimer() {
+    clearInterval(timer);
+    clock.innerHTML = '30 seconds';
+}
+
+function selectAnswer(val) {
+   if(input_flag){
+    const currQuestion = questions[questionNo];
+    const correctAnswer = currQuestion.Answer.split(" ")[1];
     
-    function selectAnswer(val){
-        const currQuestion = questions[questionNo];
-        const correctAnswer = currQuestion.Answer.split(" ")[1];
-        console.log(val , " ", correctAnswer);
-        
-        if(val === correctAnswer[0] ){
-            console.log("Correct");
-            
-        }
-        else{
-            console.log("Incorrect");
-        }
-        
+    // console.log('option' + (val-'a'+1));
+    const map ={
+        'a' : 1,
+        'b' : 2,
+        'c' : 3,
+        'd' : 4,
     }
+    if (val === correctAnswer[0]) {
+        document.getElementById('option' + map[val]).style.backgroundColor = 'lightgreen';
+        console.log("Correct");
+    } else {
+        document.getElementById('option' + map[val]).style.backgroundColor = 'red';
+        console.log("Incorrect");
+    }
+
+    const explanationDiv = document.querySelector('[Explaination]');
+    explanationDiv.classList.remove('hidden');
+    explanationDiv.querySelector('[expContent]').innerHTML = currQuestion.Answer;
+    input_flag = "";
+   }
+}
+
+function displayNext() {
+    clearInterval(timer); 
+    resetOptionsBackground(); 
+    displayQuestion();
+}
+
+function resetOptionsBackground() {
+    option1.style.backgroundColor = 'white';
+    option2.style.backgroundColor = 'white';
+    option3.style.backgroundColor = 'white';
+    option4.style.backgroundColor = 'white';
+}
+
 
     function displayNext(){
         displayQuestion();
