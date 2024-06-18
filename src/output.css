@@ -950,7 +950,7 @@ video {
 }
 
 .inactive{
-  /* display: none; */
+  display: none;
 }
 
 /* .box{
