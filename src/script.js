@@ -166,6 +166,18 @@ let questionNo = -1;
 
 let timer; // global variable for the timer
 
+function getFirstLetterAfterAnswer(str) {
+    // Regular expression to find 'Answer:' with optional leading spaces and capture the first letter after optional spaces
+    let match = str.match(/\s*Answer:\s*([a-zA-Z])/);
+
+    // Check if a match is found and return the first letter
+    if (match) {
+        return match[1];
+    } else {
+        return "No match found";
+    }
+}
+
 function displayQuestion() {
     if(totalNo == 11){
         endQuiz();
@@ -230,7 +242,7 @@ const explanationDiv = document.querySelector('[Explaination]');
 function selectAnswer(val) {
    if(input_flag){
     const currQuestion = questions[questionNo];
-    const correctAnswer = currQuestion.Answer.split(":")[1];
+    const correctAnswers = getFirstLetterAfterAnswer(currQuestion.Answer);
     
     // console.log('option' + (val-'a'+1));
     const map ={
@@ -239,11 +251,13 @@ function selectAnswer(val) {
         'c' : 3,
         'd' : 4,
     }
-    console.log(val, " ", correctAnswer[0]);
-    if (val === correctAnswer[0]) {
+    console.log(val, " ", correctAnswers[0]);
+    if (val === correctAnswers[0]) {
         document.getElementById('option' + map[val]).style.backgroundColor = 'lightgreen';
         console.log("Correct");
         correctAnswer++;
+        // explanationDiv.classList.remove('hidden');
+        // explanationDiv.querySelector('[expContent]').innerHTML = currQuestion.Answer;
         
     } else {
         document.getElementById('option' + map[val]).style.backgroundColor = 'lightcoral';
