@@ -125,6 +125,7 @@ async function continue_Info() {
     if (questions) {
         infoPage.style.display = 'none';
         quizPage.style.display = 'flex';
+        questionNo = -1;
         displayQuestion();
     } else {
         try {
@@ -221,9 +222,10 @@ function startTimer(duration) {
 
         if (timeLeft < 0 || !input_flag) {
             clearInterval(timer);
-            // displayNext(); // Auto display next question or handle timeout
+            // displayNext(); 
             input_flag = "";
             explanationDiv.classList.remove('hidden');
+            const currQuestion = questions[questionNo];
             explanationDiv.querySelector('[expContent]').innerHTML = currQuestion.Answer;
             // input_flag = "";
         }
@@ -239,10 +241,11 @@ function resetTimer() {
 }
 
 const explanationDiv = document.querySelector('[Explaination]');
+
 function selectAnswer(val) {
-   if(input_flag){
     const currQuestion = questions[questionNo];
     const correctAnswers = getFirstLetterAfterAnswer(currQuestion.Answer);
+   if(input_flag){
     
     // console.log('option' + (val-'a'+1));
     const map ={
