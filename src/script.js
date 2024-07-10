@@ -10,6 +10,7 @@ const exitBtn = document.querySelector('[Exit]');
 const topic_exitBtn = document.querySelector('[ExitT]');
 const startPage = document.querySelector('#start_page');
 const infoPage = document.querySelector('#info_page');
+const loadingPage = document.querySelector('.loader');
 const topicsPage = document.querySelector('#topics_page');
 const quizPage = document.querySelector('#quiz_page');
 const ResultsPage = document.querySelector('#Results_Page');
@@ -122,20 +123,25 @@ function continue_Topic(){
 }
 
 async function continue_Info() {
+    infoPage.style.display = 'none';
+    loadingPage.style.display = 'flex';
     if (questions) {
-        infoPage.style.display = 'none';
+        loadingPage.style.display = 'none';
         quizPage.style.display = 'flex';
         questionNo = -1;
         displayQuestion();
     } else {
         try {
             await getQuestions(topic);
-
+            
             if (questions) {
-                infoPage.style.display = 'none';
+                loadingPage.style.display = 'none';
                 quizPage.style.display = 'flex';
                 displayQuestion();
             } else {
+                // loadingPage.style.display = 'none';
+                loadingPage.style.display = 'none';
+                exitQuiz_Results()
                 console.error('Questions not fetched successfully.');
             }
         } catch (error) {

@@ -562,12 +562,28 @@ video {
   position: relative;
 }
 
+.bottom-0 {
+  bottom: 0px;
+}
+
 .bottom-\[-15px\] {
   bottom: -15px;
 }
 
+.left-0 {
+  left: 0px;
+}
+
+.right-0 {
+  right: 0px;
+}
+
 .right-2 {
   right: 0.5rem;
+}
+
+.top-0 {
+  top: 0px;
 }
 
 .m-1 {
@@ -1005,6 +1021,35 @@ video {
   border-radius: 10px;
 }
 
+.loader{
+  background-color: aliceblue;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.loader::after{
+  content: "";
+  width: 75px;
+  height: 75px;
+  border: 15px solid gainsboro;
+  border-top-color: cornflowerblue;
+  border-radius: 50%;
+  animation: loading 0.75s ease infinite;
+}
+
+@keyframes loading{
+  form{
+    transform: rotate(0turn);
+  }
+
+  to{
+    transform: rotate(1turn);
+  }
+}
+
 @media (min-width: 640px) {
   .sm\:max-w-\[50vw\] {
     max-width: 50vw;
@@ -1047,4 +1092,3 @@ video {
     line-height: 1;
   }
 }
-  

@@ -31,4 +31,32 @@
     max-height: 80%;
     border-radius: 10px;
 }
-  
+
+.loader{
+    background-color: aliceblue;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+}
+ 
+.loader::after{
+    content: "";
+    width: 75px;
+    height: 75px;
+    border: 15px solid gainsboro; 
+    border-top-color: cornflowerblue;
+    border-radius: 50%;
+    animation: loading 0.75s ease infinite;
+}
+
+@keyframes loading{
+    form{
+        transform: rotate(0turn);
+    }
+    to{
+        transform: rotate(1turn);
+    }
+}
